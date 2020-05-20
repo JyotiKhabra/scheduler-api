@@ -41,7 +41,7 @@ module.exports = function application(
   app.use("/api", appointments(db, actions.updateAppointment));
   app.use("/api", interviewers(db));
 
-  if (ENV === "development" || ENV === "test") {
+  //if (ENV === "development" || ENV === "test") {
     Promise.all([
       read(path.resolve(__dirname, `db/schema/create.sql`)),
       read(path.resolve(__dirname, `db/schema/${ENV}.sql`))
@@ -59,7 +59,7 @@ module.exports = function application(
       .catch(error => {
         console.log(`Error setting up the reset route: ${error}`);
       });
-  }
+  //}
 
   app.close = function() {
     return db.end();
